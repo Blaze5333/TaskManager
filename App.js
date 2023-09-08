@@ -1,0 +1,78 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ */
+
+import React from 'react';
+import { View,StyleSheet ,Text,Image,TouchableOpacity} from 'react-native';
+import Home from './src/Home';
+import Add from './src/Add';
+import Profile from './src/Profile';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+function App({navigation}) {
+  
+  const Tab = createBottomTabNavigator(); 
+  return (
+<NavigationContainer>
+<Tab.Navigator screenOptions={{
+    tabBarStyle:{position:'absolute',marginHorizontal:20,bottom:10,borderRadius:20,backgroundColor:'white',
+    height:75},
+    tabBarShowLabel:false
+    
+}} initialRouteName='Homew'>
+<Tab.Screen component={Home} name='Home' options={{
+  tabBarIcon:({focused})=>(
+    <View style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+    <Image source={require('./src/assets/icons/home.png')} style={{height:35,width:35,tintColor:focused?"blue":"black"}}></Image>
+      <Text style={{color:focused?"blue":"black"}}>Home</Text>
+    </View>
+  )
+}} ></Tab.Screen>
+<Tab.Screen component={Add} name='Add' options={{
+  tabBarButton:({focused})=>(
+  <TouchableOpacity style={{top:-30}} onPress={()=>{}}>
+    <View style={{backgroundColor:"red", borderRadius:100,height:80,width:80,display:'flex',justifyContent:'center',alignItems:'center'}}>
+      <Image source={require('./src/assets/icons/icons8-add-properties-30.png')} style={{height:40,width:40,tintColor:'white'}}></Image>
+    </View>
+  </TouchableOpacity>
+  
+  )
+}} ></Tab.Screen>
+<Tab.Screen component={Profile} name='Profile' options={{
+  tabBarIcon:({focused})=>(
+    <View style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+    <Image source={require('./src/assets/icons/icons8-male-user-50.png')} style={{height:40,width:40,tintColor:focused?"blue":"black"}}></Image>
+      <Text style={{color:focused?"blue":"black"}}>Profile</Text>
+    </View>
+  )
+}}>
+</Tab.Screen>
+</Tab.Navigator>
+</NavigationContainer>
+  )
+  
+}
+
+const styles = StyleSheet.create({
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+  },
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+  },
+  highlight: {
+    fontWeight: '700',
+  },
+});
+
+export default App;

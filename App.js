@@ -13,7 +13,21 @@ import Profile from './src/Profile';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 function App({navigation}) {
-  
+  const CustomButton=({children,onPress})=>(
+    <TouchableOpacity onPress={onPress} style={{
+      top:-30,
+      justifyContent:"center",
+      alignItems:"center",
+    }} activeOpacity={0.6} nextFocusLeft={7} >
+      <View style={{
+        height:80,width:80,
+        borderRadius:100,
+        backgroundColor:"red"
+      }}>
+        {children}
+      </View>
+    </TouchableOpacity>
+  )
   const Tab = createBottomTabNavigator(); 
   return (
 <NavigationContainer>
@@ -36,13 +50,12 @@ function App({navigation}) {
   ),
 }} ></Tab.Screen>
 <Tab.Screen component={Add} name='Add' options={{
-  tabBarButton:({focused})=>(
-  <TouchableOpacity style={{top:-30}} onPress={()=>{}}>
-    <View style={{backgroundColor:"red", borderRadius:100,height:80,width:80,display:'flex',justifyContent:'center',alignItems:'center'}}>
-      <Image source={require('./src/assets/icons/icons8-add-properties-30.png')} style={{height:40,width:40,tintColor:'white'}}></Image>
-    </View>
-  </TouchableOpacity>
-  
+  tabBarIcon:(({focused})=>(
+    <Image resizeMode='contain' source={require('./src/assets/icons/icons8-add-properties-30.png')} style={{height:40,width:40,tintColor:'white'}}></Image>
+  )),
+  tabBarButton:(props)=>
+  (
+    <CustomButton {...props}></CustomButton>
   )
 }} ></Tab.Screen>
 <Tab.Screen component={Profile} name='Profile' options={{

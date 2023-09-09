@@ -1,5 +1,5 @@
 import React, { useEffect, useRef,useState } from 'react'
-import {View,TouchableOpacity, Text, Image, Modal} from 'react-native'
+import {View,TouchableOpacity, Text, Image, Modal,ScrollView} from 'react-native'
 import { Swipeable,GestureHandlerRootView } from 'react-native-gesture-handler'
 export default function DataList({item,prevRow,setprevRow}) {
     const [open, setopen] = useState(false)
@@ -20,16 +20,16 @@ export default function DataList({item,prevRow,setprevRow}) {
   return (
     <GestureHandlerRootView>
     <Modal  visible={open}  transparent>
-        <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor: 'rgba(52, 52, 52, 0.6)'}}>
-         <View style={{backgroundColor:item.Color,height:400,width:300,borderRadius:30}}>
+        <View  style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor: 'rgba(52, 52, 52, 0.6)'}}>
+         <View  style={{backgroundColor:item.Color,width:300,height:400,borderRadius:30}}>
           <View style={{width:'100%',backgroundColor:'white',height:50,top:0,borderTopRightRadius:30,borderTopLeftRadius:30,justifyContent:'center',alignItems:'center'}}>
             <Text style={{color:'black',fontSize:25,fontWeight:'bold'}}>{item.Title}</Text>
           </View>
-          <View style={{width:'100%',justifyContent:'center',alignItems:'center',height:290}}>
+          <ScrollView contentContainerStyle={{justifyContent:'center',alignItems:'center'}} style={{width:'100%',height:290,paddingTop:0,paddingHorizontal:10}}>
             <Text style={{color:'white',}}>{item.Description}</Text>
             <Text style={{color:'white',}}>Date : {item.Date}</Text>
             <Text style={{color:'white',}}>Time: {item.Time}</Text>
-          </View>
+          </ScrollView>
          <TouchableOpacity onPress={()=>{setopen(false)}}>
             <View style={{width:'100%', height:60,backgroundColor:"white",borderBottomEndRadius:30,borderBottomStartRadius:30,justifyContent:'center',alignItems:'center'}}>
                 <Text style={{color:'black',fontSize:25,fontFamily:'bold'}}>Ok</Text>

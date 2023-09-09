@@ -3,7 +3,7 @@ import { FlatList, Text, TouchableOpacity, View,ScrollView } from 'react-native'
 import DateList from './DateList'
 import { Data } from './data'
 import DataList from './DataList'
-export default function Home() {
+export default function Home({navigation}) {
   const [state, setstate] = useState(false)
   const [prevRow, setprevRow] = useState(false)
   useEffect(() => {

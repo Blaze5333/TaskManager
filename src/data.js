@@ -2,7 +2,7 @@
 const Data=[
     {
         "Title": "Meeting with Client",
-        "Description": "Discuss project requirements and timelines.",
+        "Description": "Discuss project requirements and timelines. A book is a medium for recording information in the form of writing or images, typically composed of many pages (made of papyrus, parchment, vellum, or paper) bound together and protected by a cover.[1] It can also be a handwritten or printed work of fiction or nonfiction, usually on sheets of paper fastened or bound together within covers. The technical term for this physical arrangement is codex (plural, codices). In the history of hand-held physical supports for extended written compositions or records, the codex replaces its predecessor, the scroll. A single sheet in a codex is a leaf and each side of a leaf is a page.As an intellectual object, a book is prototypically a composition of such great length that it takes a considerable investment of time to compose and still considered as an investment of time to read. In a restricted sense, a book is a self-sufficient section or part of a longer composition, a usage reflecting that, in antiquity, long works had to be written on several scrolls and each scroll had to be identified by the book it contained. Each part of Aristotle's Physics is called a book. In an unrestricted sense, a book is the compositional whole of which such sections, whether called books or chapters or parts, are parts.",
         "Date": "2023-09-10",
         "Time": "14:00",
         "Color": "slateblue",

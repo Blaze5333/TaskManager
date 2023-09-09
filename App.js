@@ -20,16 +20,20 @@ function App({navigation}) {
 <Tab.Navigator screenOptions={{
     tabBarStyle:{position:'absolute',marginHorizontal:20,bottom:10,borderRadius:20,backgroundColor:'white',
     height:75},
-    tabBarShowLabel:false
+    tabBarShowLabel:false,
+    header:(()=>(<View style={{height:60,backgroundColor:"black",justifyContent:'center',paddingHorizontal:20}}>
+      <Text style={{color:"white",fontWeight:"bold",fontSize:25}}>Hi ! Mustafa</Text>
+    </View>)),
+    headerStyle:{backgroundColor:"black"}
     
-}} initialRouteName='Homew'>
+}} initialRouteName='Home' >
 <Tab.Screen component={Home} name='Home' options={{
   tabBarIcon:({focused})=>(
     <View style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
     <Image source={require('./src/assets/icons/home.png')} style={{height:35,width:35,tintColor:focused?"blue":"black"}}></Image>
       <Text style={{color:focused?"blue":"black"}}>Home</Text>
     </View>
-  )
+  ),
 }} ></Tab.Screen>
 <Tab.Screen component={Add} name='Add' options={{
   tabBarButton:({focused})=>(

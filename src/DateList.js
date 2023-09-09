@@ -5,10 +5,10 @@ export default function DateList({state,setstate,item}) {
    <TouchableOpacity onPress={()=>{
     setstate(item)
    }} >
-    <View style={{backgroundColor:state===item?"blue":"white",height:130,width:90,borderRadius:20,display:'flex',justifyContent:'center',alignItems:'center'}}>
-      <Text style={{fontSize:40,color:'black',fontWeight:"bold"}}>{item}</Text>
-      <Text style={{color:'black'}}>November</Text>
-      <Text style={{color:'black'}}>2003</Text>
+    <View style={{backgroundColor:state===item?"#2196F3":"black",height:130,width:90,borderRadius:15,display:'flex',justifyContent:'center',alignItems:'center'}}>
+      <Text style={{color:'white'}}>Nov</Text>
+      <Text style={{fontSize:40,color:'white',fontWeight:"bold"}}>{item}</Text>
+      <Text style={{color:'white'}}>Monday</Text>
     </View>
    </TouchableOpacity>
   )

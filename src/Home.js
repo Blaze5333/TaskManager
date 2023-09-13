@@ -1,14 +1,20 @@
 import React ,{useState,useEffect} from 'react'
-import { FlatList, Text, TouchableOpacity, View,ScrollView } from 'react-native'
+import { FlatList, Text, TouchableOpacity, View,ScrollView,StatusBar } from 'react-native'
 import DateList from './DateList'
 import { Data } from './data'
 import DataList from './DataList'
+import {useFocusEffect} from '@react-navigation/native';
 export default function Home({navigation}) {
   const [state, setstate] = useState(false)
   const [prevRow, setprevRow] = useState(false)
-  useEffect(() => {
-    
-  },[])
+  useFocusEffect(
+    React.useCallback(() => {
+        ; // 'light-content' is also available
+         StatusBar.setBackgroundColor('black');
+        //  StatusBar.setTranslucent(true) //add color code
+        
+    }, []),
+  );
   const data=[1,2,3,4,5,6,7,8,9,10]
   return (
     <ScrollView style={{backgroundColor:"black",flex:1}}>

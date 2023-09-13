@@ -6,13 +6,17 @@
  */
 
 import React from 'react';
-import { View,StyleSheet ,Text,Image,TouchableOpacity} from 'react-native';
+import { View,StyleSheet ,Text,Image,TouchableOpacity,SafeAreaView} from 'react-native';
 import Home from './src/Home';
 import Add from './src/Add';
 import Profile from './src/Profile';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NativeModules } from 'react-native';
+
+
 function App({navigation}) {
+  // NativeModules.DevSettings.setIsDebuggingRemotely(false);
   const CustomButton=({children,onPress})=>(
     <TouchableOpacity onPress={onPress} style={{
       top:-30,
@@ -56,19 +60,24 @@ function App({navigation}) {
   tabBarButton:(props)=>
   (
     <CustomButton {...props}></CustomButton>
-  )
+  ),
+  headerShown:false
 }} ></Tab.Screen>
 <Tab.Screen component={Profile} name='Profile' options={{
   tabBarIcon:({focused})=>(
     <View style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
-    <Image source={require('./src/assets/icons/icons8-male-user-50.png')} style={{height:40,width:40,tintColor:focused?"blue":"black"}}></Image>
+    <View style={{width:55,height:55,borderRadius:50,padding:1,borderColor:"blue",borderWidth:focused?2:0}} >
+    <Image source={require('./src/assets/icons/mustafa2.jpeg')} style={{height:"100%",width:"100%",borderRadius:100}} resizeMethod='contain'></Image>
+    </View>
       <Text style={{color:focused?"blue":"black"}}>Profile</Text>
     </View>
-  )
+  ),
+  headerShown:false
 }}>
 </Tab.Screen>
 </Tab.Navigator>
 </NavigationContainer>
+
   )
   
 }

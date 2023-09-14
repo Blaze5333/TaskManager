@@ -1,2 +1,2 @@
-import BottomNav from "./BottomNav";
-export default BottomNav;
+import StackNavigation from "./StackNavigation";
+export default StackNavigation;

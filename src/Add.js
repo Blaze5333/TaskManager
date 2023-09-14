@@ -48,7 +48,7 @@ export default function Add() {
       <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
         <TextInput value={date}
         inlineImageLeft='clock' 
-        placeholder={(+time.getHours()>12?(+time.getHours()-12+""):(+time.getHours()))+":"+(+time.getMinutes()<10?("0"+time.getMinutes()):time.getMinutes())+ (+time.getHours()>12?" PM":" AM")}  
+        placeholder={(+time.getHours()>12?(+time.getHours()-12+""):(+time.getHours()))+":"+(+time.getMinutes()<10?("0"+time.getMinutes()):time.getMinutes())+''+(+time.getHours()>12?" PM":" AM")}  
         editable={false} 
         inlineImagePadding={30}
         style={{backgroundColor:"black",borderWidth:0.5,borderColor:'white',width:"100%",borderRadius:15,padding:10}} 

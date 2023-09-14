@@ -92,7 +92,7 @@ export default function Profile() {
    <TextInput editable={false} value='+91 8017592975' inlineImageLeft='phone' style={{backgroundColor:"rgba(52, 52, 52, 0.8)",width:"100%",height:40,borderRadius:10,color:'white',fontSize:15,fontWeight:'bold'}}></TextInput>
    </View> 
    </View> 
-   <View style={{height:"45%",bottom:"2%"}}>
+   <View style={{height:"45%",bottom:"2%",paddingLeft:5}}>
    <View style={{marginVertical: 1}}>
             <View
               style={{

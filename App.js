@@ -14,16 +14,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NativeModules } from 'react-native';
 import StackNavigation from './src/Navigation';
-
-
+import { Provider } from 'react-redux';
+import { Store } from './src/redux/store';
 function App({navigation}) {
   // NativeModules.DevSettings.setIsDebuggingRemotely(false);
 
   const Tab = createBottomTabNavigator(); 
   return (
-    <StackNavigation>
-      
-    </StackNavigation>
+    <Provider store={Store}>
+    <StackNavigation/>
+    </Provider>
   )
   
 }

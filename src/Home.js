@@ -4,11 +4,16 @@ import DateList from './DateList'
 import { Data } from './data'
 import DataList from './DataList'
 import {useFocusEffect} from '@react-navigation/native';
+import { useSelector } from 'react-redux'
+import userReducer from './redux/reducers'
 export default function Home({navigation}) {
+  const {userId}=useSelector(state=>state.userReducer)
+
   const [state, setstate] = useState(false)
   const [prevRow, setprevRow] = useState(false)
   useFocusEffect(
     React.useCallback(() => {
+        console.log(userId)
         ; // 'light-content' is also available
          StatusBar.setBackgroundColor('black');
         //  StatusBar.setTranslucent(true) //add color code

@@ -1,5 +1,6 @@
+/*eslint-disable*/
 import React, { useState } from 'react'
-import { Text, TouchableOpacity, View,Image,ImageBackground,Pressable,TextInput} from 'react-native'
+import { Text, TouchableOpacity, View,Image,ImageBackground,Pressable,TextInput,Modal,Alert} from 'react-native'
 import {launchImageLibrary,launchCamera} from 'react-native-image-picker';
 import DatePicker from 'react-native-date-picker'
 import { PermissionsAndroid } from 'react-native';
@@ -13,10 +14,25 @@ export default function Signup({navigation}) {
     const [phone, setphone] = useState('')
     const [dateOpen, setdateOpen] = useState('')
     const sendData=async()=>{
-      console.log({name,email,phone})
-        axios.post('http://localhost:3000/signup',{name,email,password,phone,dob,imageUrl}).then((data)=>{
+       if(!name || !password || !email || !phone || !dob){
+        Alert.alert("Error","All fields are manadatory",[
+          "OK",()=>{console.log('pressed')}
+        ])
+       }
+       else{
+        axios.post('http://localhost:3000/user/signup',{name,email,password,phone,dob,imageUrl}).then((data)=>{
           console.log(data)
+          if(data.data.error===1){
+            Alert.alert("Error","User Already Exists",[
+              {text:"Ok",onPress:()=>{}},
+              {text:"Go to Login",onPress:()=>{navigation.navigate('login')}}
+            ])
+          }
+          else{
+          navigation.navigate('login')
+          }
         }).catch((err)=>{console.log(err)})
+      }
     }
     const addImage=async()=>{
         requestCameraPermission()
@@ -44,6 +60,7 @@ export default function Signup({navigation}) {
     }
   return (
     <View style={{flex:1,backgroundColor:"black"}}>
+    
         <View style={{width:"100%",height:"20%",justifyContent:"center",alignItems:"center"}}>
             <ImageBackground source={imageUrl?{uri:imageUrl}:require('./assets/icons/defaultAvatar.png')} style={{height:120,width:120,justifyContent:"flex-end",alignItems:'flex-end'}} imageStyle={{borderRadius:100}}>
             <TouchableOpacity onPress={addImage}>
@@ -76,7 +93,7 @@ export default function Signup({navigation}) {
         <TextInput value={phone} keyboardType='phone-pad' onChangeText={text=>{setphone(text)}} style={{width:"100%",backgroundColor:"rgba(52, 52, 52, 1)",borderRadius:10,padding:10}} placeholder='Phone no.' placeholderTextColor={"white"}></TextInput>
         </View>
         <View>
-        <TextInput textContentType='password' value={password} onChangeText={text=>{setpassword(text)}} style={{width:"100%",backgroundColor:"rgba(52, 52, 52, 1)",borderRadius:10,padding:10}} placeholder='Password' placeholderTextColor={"white"}></TextInput>
+        <TextInput textContentType='password' secureTextEntry value={password} onChangeText={text=>{setpassword(text)}} style={{width:"100%",backgroundColor:"rgba(52, 52, 52, 1)",borderRadius:10,padding:10}} placeholder='Password' placeholderTextColor={"white"}></TextInput>
         </View>
         </View>
         <View style={{height:'10%',width:"100%",justifyContent:"center",alignItems:"center"}}>
@@ -85,6 +102,9 @@ export default function Signup({navigation}) {
                     <Text style={{color:'white',fontSize:15,fontWeight:"bold"}}>Signup</Text>
                 </View>
             </TouchableOpacity>
+        </View>
+        <View style={{justifyContent:"center",alignItems:"center"}}>
+          <Text style={{color:"white"}}>Already have an account ? <Text style={{color:"#2196F3",textDecorationLine:'underline'}} onPress={()=>{navigation.navigate('login')}}>Login</Text></Text>
         </View>
         {dateOpen&&<DatePicker onConfirm={(date)=>{ 
         setdob(date)

@@ -1,4 +1,5 @@
 const mongoose=require('mongoose')
+const bcrypt=require('bcryptjs')
 const schema=new mongoose.Schema({
     name:String,
     email:String,
@@ -7,5 +8,10 @@ const schema=new mongoose.Schema({
     imageUrl:String,
     dob:String
 })
-const User=mongoose.model('UserDetails',schema)
-module.exports=User
+schema.pre('save',async function(next){
+    this.password=await bcrypt.hash(this.password,10)
+    next()
+})
+const model=mongoose.model('UserDetails',schema)
+
+module.exports=model

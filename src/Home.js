@@ -2,7 +2,6 @@
 import React ,{useState,useEffect} from 'react'
 import { FlatList, Text, TouchableOpacity, View,ScrollView,StatusBar, } from 'react-native'
 import DateList from './DateList'
-import { Data } from './data'
 import DataList from './DataList'
 import {useFocusEffect} from '@react-navigation/native';
 import { useSelector,useDispatch } from 'react-redux'
@@ -10,6 +9,7 @@ import userReducer from './redux/reducers'
 import { setDataPermisson } from './redux/actions'
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { url } from '../credentials'
 export default function Home({navigation}) {
   const {userId,permission}=useSelector(state=>state.userReducer)
   const dispatch=useDispatch()
@@ -31,7 +31,7 @@ export default function Home({navigation}) {
   
   const apiCall=()=>{
     try{
-      axios.get(`http://localhost:3000/user/task/${userId}`).then(async(data)=>{
+      axios.get(`${url}/user/task/${userId}`).then(async(data)=>{
          setdata2(data.data)
        let arr=[]
         for(let i=0;i<data.data.length;i++){

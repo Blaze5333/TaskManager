@@ -8,7 +8,7 @@ import { setDataPermisson } from './redux/actions';
 import userReducer from './redux/reducers';
 import axios from 'axios';
 import Snackbar from "react-native-snackbar"
-
+import { url } from '../credentials';
 export default function Add() {
   const dispatch=useDispatch()
   const {userId,permission}=useSelector(state=>state.userReducer)
@@ -26,7 +26,7 @@ export default function Add() {
   const [note, setnote] = useState('')
   const addNote=()=>{
     try{
-      axios.post(`http://localhost:3000/user/task/${userId}`,{title,note,time,date,color,userId}).then((data)=>{
+      axios.post(`${url}/user/task/${userId}`,{title,note,time,date,color,userId}).then((data)=>{
         Snackbar.show({
           text:"Task Added to the list",
           textColor:"green",

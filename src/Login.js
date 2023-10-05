@@ -7,7 +7,7 @@ import { setUserId } from './redux/actions'
 import userReducer from './redux/reducers'
 import {useFocusEffect} from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-
+import { url } from '../credentials'
 
 export default function Login({navigation}) {
    
@@ -15,6 +15,7 @@ export default function Login({navigation}) {
       React.useCallback(() => {
           ; // 'light-content' is also available
            StatusBar.setBackgroundColor('black');
+           console.log(url)
           
       },[]),
     );
@@ -31,7 +32,7 @@ export default function Login({navigation}) {
        }
        else{
          try{
-        axios.post('http://localhost:3000/user/login',{email,password}).then(async(data)=>{
+        axios.post(`${url}/user/login`,{email,password}).then(async(data)=>{
              if(data.data.error===1){
                 Alert.alert("Error","Invalid User Credentials",[
                     "OK",()=>{console.log('pressed')}

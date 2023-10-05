@@ -8,11 +8,12 @@ import Add from '../Add';
 import Profile from '../Profile';
 import { useSelector,useDispatch } from 'react-redux'
 import axios from 'axios';
+import { url } from '../../credentials';
 export default function BottomNav() {
   const{userId}=useSelector(state=>state.userReducer)
   const [details, setdetails] = useState()
   useEffect(() => {
-      axios.get(`http://localhost:3000/user/${userId}`).then((data)=>{
+      axios.get(`${url}/user/${userId}`).then((data)=>{
          setdetails(data.data[0])
       })
   }, [])

@@ -6,6 +6,7 @@ import DatePicker from 'react-native-date-picker'
 import { PermissionsAndroid } from 'react-native';
 import axios from 'axios';
 import {useFocusEffect} from '@react-navigation/native'
+import { url } from '../credentials';
 export default function Signup({navigation}) {
   useFocusEffect(
     React.useCallback(() => {
@@ -29,7 +30,8 @@ export default function Signup({navigation}) {
        }
        else{
         try{
-        axios.post('http://localhost:3000/user/signup',{name,email,password,phone,dob,imageUrl}).then((data)=>{
+          
+        axios.post(`${url}/user/signup`,{name,email,password,phone,dob,imageUrl}).then((data)=>{
           console.log(data)
           if(data.data.error===1){
             Alert.alert("Error","User Already Exists",[

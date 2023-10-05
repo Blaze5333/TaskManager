@@ -3,6 +3,7 @@ import axios from 'axios'
 import React, { useEffect, useRef,useState } from 'react'
 import {View,TouchableOpacity, Text, Image, Modal,ScrollView} from 'react-native'
 import { Swipeable,GestureHandlerRootView } from 'react-native-gesture-handler'
+import { url } from '../credentials'
 export default function DataList({item,prevRow,setprevRow,refresh,setrefresh,id}) {
     const [open, setopen] = useState(false)
     // const [time, settime] = useState(new Date(item.time))
@@ -10,14 +11,14 @@ export default function DataList({item,prevRow,setprevRow,refresh,setrefresh,id}
     const date=new Date(item.date)
     const time=new Date(item.time)
     const deleteNote=()=>{
-      axios.delete(`http://localhost:3000/user/task/${id}`).then((d)=>{
+      axios.delete(`${url}/user/task/${id}`).then((d)=>{
         
         setrefresh(id)
              prevRow.close()
         }) 
     }
     const completeNote=()=>{
-      axios.post(`http://localhost:3000/user/task/update/${id}`).then((d)=>{
+      axios.post(`${url}/user/task/update/${id}`).then((d)=>{
       
         setrefresh(id)
         prevRow.close()

@@ -5,7 +5,7 @@ import { BarChart } from 'react-native-gifted-charts';
 import Pie from 'react-native-pie'
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-
+import { url } from '../credentials';
 
 export default function Profile({route,navigation}) {
   const [date, setdate] = useState(new Date(route.params.dob))
@@ -22,7 +22,7 @@ export default function Profile({route,navigation}) {
         ; // 'light-content' is also available
          StatusBar.setBackgroundColor('#db222a'); //add color code
          console.log('details',route.params)
-         axios.get(`http://localhost:3000/user/task/${route.params._id}`).then((data)=>{
+         axios.get(`${url}/user/task/${route.params._id}`).then((data)=>{
               let arr=[]
               for(let i=0;i<data.data.length;i++){
                 arr.push(new Date(data.data[i].date).getMonth())

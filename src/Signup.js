@@ -1,11 +1,19 @@
 /*eslint-disable*/
 import React, { useState } from 'react'
-import { Text, TouchableOpacity, View,Image,ImageBackground,Pressable,TextInput,Modal,Alert} from 'react-native'
+import { Text, TouchableOpacity, View,Image,ImageBackground,Pressable,TextInput,Modal,Alert,StatusBar} from 'react-native'
 import {launchImageLibrary,launchCamera} from 'react-native-image-picker';
 import DatePicker from 'react-native-date-picker'
 import { PermissionsAndroid } from 'react-native';
 import axios from 'axios';
+import {useFocusEffect} from '@react-navigation/native'
 export default function Signup({navigation}) {
+  useFocusEffect(
+    React.useCallback(() => {
+        ; // 'light-content' is also available
+         StatusBar.setBackgroundColor('black'); 
+        
+    },[]),
+  );
     const [imageUrl, setimageUrl] = useState('')
     const [name, setname] = useState('')
     const [email, setemail] = useState('')
@@ -20,6 +28,7 @@ export default function Signup({navigation}) {
         ])
        }
        else{
+        try{
         axios.post('http://localhost:3000/user/signup',{name,email,password,phone,dob,imageUrl}).then((data)=>{
           console.log(data)
           if(data.data.error===1){
@@ -32,6 +41,12 @@ export default function Signup({navigation}) {
           navigation.navigate('login')
           }
         }).catch((err)=>{console.log(err)})
+      }
+      catch(err){
+        Alert.alert("Server Error","Try Again Later",[
+          {text:"Ok",onPress:()=>{}},
+        ])
+      }
       }
     }
     const addImage=async()=>{
@@ -109,7 +124,7 @@ export default function Signup({navigation}) {
         {dateOpen&&<DatePicker onConfirm={(date)=>{ 
         setdob(date)
         setdateOpen(false)
-      }} modal mode={'date'} date={new Date()} open={{dateOpen}} onCancel={()=>{setdateOpen(false)}}></DatePicker>}
+      }} modal mode={'date'} date={new Date()} open={dateOpen?true:false} onCancel={()=>{setdateOpen(false)}}></DatePicker>}
     </View>
   )
 }

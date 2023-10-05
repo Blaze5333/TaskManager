@@ -18,7 +18,7 @@ import { Provider } from 'react-redux';
 import { Store } from './src/redux/store';
 function App({navigation}) {
   // NativeModules.DevSettings.setIsDebuggingRemotely(false);
-
+  
   const Tab = createBottomTabNavigator(); 
   return (
     <Provider store={Store}>

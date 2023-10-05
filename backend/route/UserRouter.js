@@ -14,7 +14,12 @@ route.post('/signup',async (req,res)=>{
     })
     }
     else{
+      if(!imageUrl){
+      await User.create({name,email,password,dob,phone})
+    }
+    else{
       await User.create({name,email,password,dob,imageUrl,phone})
+    }
       res.send({
         error:0,
       })
@@ -45,6 +50,11 @@ route.post('/login',(req,res)=>{
         }
       })
     }
+  })
+})
+route.get('/:id',(req,res)=>{
+  User.find({_id:req.params.id}).then((data)=>{
+    res.send(data)
   })
 })
 module.exports=route

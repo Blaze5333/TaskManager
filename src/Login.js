@@ -1,10 +1,23 @@
+/*eslint-disable*/
 import axios from 'axios'
 import React, { useState } from 'react'
-import {Image, View,TextInput, TouchableOpacity,Text,Alert} from 'react-native'
+import {Image, View,TextInput, TouchableOpacity,Text,Alert,StatusBar} from 'react-native'
 import { useSelector,useDispatch } from 'react-redux'
 import { setUserId } from './redux/actions'
 import userReducer from './redux/reducers'
+import {useFocusEffect} from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
+
 export default function Login({navigation}) {
+   
+   useFocusEffect(
+      React.useCallback(() => {
+          ; // 'light-content' is also available
+           StatusBar.setBackgroundColor('black');
+          
+      },[]),
+    );
     const {userId}=useSelector(state=>state.userReducer)
     const dispatch=useDispatch()
     const [email, setemail] = useState('')
@@ -17,17 +30,26 @@ export default function Login({navigation}) {
           ])
        }
        else{
-        axios.post('http://localhost:3000/user/login',{email,password}).then((data)=>{
+         try{
+        axios.post('http://localhost:3000/user/login',{email,password}).then(async(data)=>{
              if(data.data.error===1){
                 Alert.alert("Error","Invalid User Credentials",[
                     "OK",()=>{console.log('pressed')}
                   ])
              }
              else{
+               console.log(data.data.id)
                 dispatch(setUserId(data.data.id))
+                await AsyncStorage.setItem('user',data.data.id)
                 navigation.navigate('main')
              }
         })
+      }
+      catch(err){
+         Alert.alert("Server Error","Try Again Later",[
+            {text:"Ok",onPress:()=>{}},
+          ])
+      }
        }
     }
   return (

@@ -1,19 +1,64 @@
+/*eslint-disable*/
 import React, { useState } from 'react'
 import { View,Text, TouchableOpacity, TextInput,Pressable,Image,StatusBar } from 'react-native'
 import DatePicker from 'react-native-date-picker'
 import {useFocusEffect} from '@react-navigation/native';
+import { useSelector,useDispatch } from 'react-redux';
+import { setDataPermisson } from './redux/actions';
+import userReducer from './redux/reducers';
+import axios from 'axios';
+import Snackbar from "react-native-snackbar"
+
 export default function Add() {
+  const dispatch=useDispatch()
+  const {userId,permission}=useSelector(state=>state.userReducer)
   useFocusEffect(
     React.useCallback(() => {
         ; // 'light-content' is also available
          StatusBar.setBackgroundColor('black');
-        
     }, []),
   );
   const [date, setdate] = useState(new Date())
   const [datePicker, setdatePicker] = useState(false)
   const [time, settime] = useState(new Date())
-  const [color, setcolor] = useState(1)
+  const [color, setcolor] = useState('slateblue')
+  const [title, settitle] = useState('')
+  const [note, setnote] = useState('')
+  const addNote=()=>{
+    try{
+      axios.post(`http://localhost:3000/user/task/${userId}`,{title,note,time,date,color,userId}).then((data)=>{
+        Snackbar.show({
+          text:"Task Added to the list",
+          textColor:"green",
+          duration:Snackbar.LENGTH_SHORT,
+          backgroundColor:"#D1FFBD"
+        })
+        
+        dispatch(setDataPermisson(1))
+        settitle('')
+        setnote('')
+        setcolor('slateblue')
+        setdate(new Date())
+        settime(new Date())
+      }).catch((err)=>{
+        console.log(err)
+        Snackbar.show({
+          text:"Server Error",
+          textColor:"red",
+          duration:Snackbar.LENGTH_SHORT,
+          backgroundColor:"#FFCCCB"
+        })
+      })
+    }
+    catch(err){
+      Snackbar.show({
+        text:"Server Error",
+        textColor:"red",
+        duration:Snackbar.LENGTH_SHORT,
+        backgroundColor:"#FFCCCB"
+      })
+    }
+  }
   return (
     <View style={{flex:1,backgroundColor:"black",padding:20}}>
     <View style={{height:'10%'}}>
@@ -22,11 +67,11 @@ export default function Add() {
         <View style={{height:"78%",flexDirection:"column",justifyContent:"space-evenly"}}>
         <View >
         <Text style={{color:"white",fontSize:20,bottom:5}}>Title</Text>
-        <TextInput style={{backgroundColor:"black",width:"100%",borderRadius:15,borderColor:'white',borderWidth:0.5,fontSize:15,padding:15}}></TextInput>
+        <TextInput value={title} onChangeText={text=>{settitle(text)}} style={{backgroundColor:"black",width:"100%",borderRadius:15,borderColor:'white',borderWidth:0.5,fontSize:15,padding:15}}></TextInput>
         </View>
         <View >
         <Text style={{color:"white",fontSize:20,bottom:5}}>Note</Text>
-        <TextInput multiline  style={{padding:15,backgroundColor:"black",textAlignVertical:'top',fontSize:15,width:"100%",borderRadius:15,height:150,borderColor:'white',borderWidth:0.5}}></TextInput>
+        <TextInput value={note} onChangeText={text=>{setnote(text)}} multiline  style={{padding:15,backgroundColor:"black",textAlignVertical:'top',fontSize:15,width:"100%",borderRadius:15,height:150,borderColor:'white',borderWidth:0.5}}></TextInput>
         </View>
         <View>
         <Text style={{color:"white",fontSize:20,bottom:5}}>Date</Text>
@@ -59,16 +104,16 @@ export default function Add() {
       <View >
         <Text style={{color:"white",fontSize:20,bottom:5}}>Color</Text>
         <View style={{flexDirection:"row"}}>
-          <TouchableOpacity onPress={()=>{setcolor(1)}}>
-            <View style={{height:40,width:40,borderRadius:100,backgroundColor:"slateblue", borderColor:'white',borderWidth:color===1?2:0}}></View>
+          <TouchableOpacity onPress={()=>{setcolor('slateblue')}}>
+            <View style={{height:40,width:40,borderRadius:100,backgroundColor:"slateblue", borderColor:'white',borderWidth:color==='slateblue'?2:0}}></View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>{setcolor(2)}}>
-            <View style={{height:40,width:40,borderRadius:100,backgroundColor:"#F44336",left:10,borderColor:'white',borderWidth:color===2?2:0}}></View>
+          <TouchableOpacity onPress={()=>{setcolor("#F44336")}}>
+            <View style={{height:40,width:40,borderRadius:100,backgroundColor:"#F44336",left:10,borderColor:'white',borderWidth:color==='#F44336'?2:0}}></View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>{setcolor(3)}}>
-            <View style={{height:40,width:40,borderRadius:100,backgroundColor:"#FF9800",left:20,borderColor:'white',borderWidth:color===3?2:0}}></View>
+          <TouchableOpacity onPress={()=>{setcolor("#FF9800")}}>
+            <View style={{height:40,width:40,borderRadius:100,backgroundColor:"#FF9800",left:20,borderColor:'white',borderWidth:color==="#FF9800"?2:0}}></View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={addNote}>
             <View style={{height:50,width:150,borderRadius:15,backgroundColor:"#2196F3",left:60,justifyContent:"center",alignItems:"center"}}>
               <Text style={{color:"white",fontWeight:"bold",fontSize:20}}>Add</Text>
             </View>
@@ -84,7 +129,7 @@ export default function Add() {
         } 
         console.log(date)
         setdatePicker(false)
-      }} modal mode={datePicker} date={date} open={{datePicker}} onCancel={()=>{setdatePicker(false)}}></DatePicker>}
+      }} modal mode={datePicker} date={date} open={datePicker?true:false} onCancel={()=>{setdatePicker(false)}}></DatePicker>}
     </View>
     </View>
   )

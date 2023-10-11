@@ -15,7 +15,7 @@ export default function Add() {
   useFocusEffect(
     React.useCallback(() => {
         ; // 'light-content' is also available
-         StatusBar.setBackgroundColor('black');
+         StatusBar.setBackgroundColor('#2e325a');
     }, []),
   );
   const [date, setdate] = useState(new Date())
@@ -60,18 +60,18 @@ export default function Add() {
     }
   }
   return (
-    <View style={{flex:1,backgroundColor:"black",padding:20}}>
+    <View style={{flex:1,backgroundColor:"#2e325a",padding:20}}>
     <View style={{height:'10%'}}>
     <Text style={{color:"white",fontSize:30,fontWeight:'bold'}}>Add Task</Text>
     </View>
         <View style={{height:"78%",flexDirection:"column",justifyContent:"space-evenly"}}>
         <View >
         <Text style={{color:"white",fontSize:20,bottom:5}}>Title</Text>
-        <TextInput value={title} onChangeText={text=>{settitle(text)}} style={{backgroundColor:"black",width:"100%",borderRadius:15,borderColor:'white',borderWidth:0.5,fontSize:15,padding:15}}></TextInput>
+        <TextInput value={title} onChangeText={text=>{settitle(text)}} style={{backgroundColor:"#2e325a",width:"100%",borderRadius:15,borderColor:'white',borderWidth:0.5,fontSize:15,padding:15}}></TextInput>
         </View>
         <View >
         <Text style={{color:"white",fontSize:20,bottom:5}}>Note</Text>
-        <TextInput value={note} onChangeText={text=>{setnote(text)}} multiline  style={{padding:15,backgroundColor:"black",textAlignVertical:'top',fontSize:15,width:"100%",borderRadius:15,height:150,borderColor:'white',borderWidth:0.5}}></TextInput>
+        <TextInput value={note} onChangeText={text=>{setnote(text)}} multiline  style={{padding:15,backgroundColor:"#2e325a",textAlignVertical:'top',fontSize:15,width:"100%",borderRadius:15,height:150,borderColor:'white',borderWidth:0.5}}></TextInput>
         </View>
         <View>
         <Text style={{color:"white",fontSize:20,bottom:5}}>Date</Text>
@@ -82,7 +82,7 @@ export default function Add() {
         value={date} 
         placeholder={date.getDate()+"/"+ (+date.getMonth()+1<10?'0'+(+date.getMonth()+1):date.getMonth()+1)+"/"+date.getFullYear()}  
         editable={false} 
-        style={{backgroundColor:"black",borderWidth:0.5,borderColor:'white',width:'100%',borderRadius:15,padding:10}} 
+        style={{backgroundColor:"#2e325a",borderWidth:0.5,borderColor:'white',width:'100%',borderRadius:15,padding:10}} 
         placeholderTextColor={'white'}></TextInput>
         </View>
       </Pressable>
@@ -96,7 +96,7 @@ export default function Add() {
         placeholder={(+time.getHours()>12?(+time.getHours()-12+""):(+time.getHours()))+":"+(+time.getMinutes()<10?("0"+time.getMinutes()):time.getMinutes())+''+(+time.getHours()>12?" PM":" AM")}  
         editable={false} 
         inlineImagePadding={30}
-        style={{backgroundColor:"black",borderWidth:0.5,borderColor:'white',width:"100%",borderRadius:15,padding:10}} 
+        style={{backgroundColor:"#2e325a",borderWidth:0.5,borderColor:'white',width:"100%",borderRadius:15,padding:10}} 
         placeholderTextColor={'white'}></TextInput>
         </View>
       </Pressable>

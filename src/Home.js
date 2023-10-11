@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import React ,{useState,useEffect} from 'react'
-import { FlatList, Text, TouchableOpacity, View,ScrollView,StatusBar, } from 'react-native'
+import { FlatList, Text, TouchableOpacity, View,ScrollView,StatusBar,LogBox } from 'react-native'
 import DateList from './DateList'
 import DataList from './DataList'
 import {useFocusEffect} from '@react-navigation/native';
@@ -22,8 +22,9 @@ export default function Home({navigation}) {
   const [dates, setdates] = useState('')
   useFocusEffect(
     React.useCallback(() => {
-         StatusBar.setBackgroundColor('black');
+         StatusBar.setBackgroundColor('#2e325a');
         //  StatusBar.setTranslucent(true) //add color code
+        LogBox.ignoreAllLogs()
         apiCall()
        
     }, [refresh]),
@@ -59,7 +60,7 @@ export default function Home({navigation}) {
   }
   
   return (
-    <ScrollView style={{backgroundColor:"black",flex:1,height:"100%"}}>
+    <ScrollView style={{backgroundColor:"#2e325a",flex:1,height:"100%"}}>
         <View style={{}} >
         <FlatList 
         style={{left:10,right:20}}

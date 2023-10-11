@@ -14,7 +14,7 @@ export default function Login({navigation}) {
    useFocusEffect(
       React.useCallback(() => {
           ; // 'light-content' is also available
-           StatusBar.setBackgroundColor('black');
+           StatusBar.setBackgroundColor('#2e325a');
            console.log(url)
           
       },[]),
@@ -54,16 +54,16 @@ export default function Login({navigation}) {
        }
     }
   return (
-   <View style={{flex:1,backgroundColor:"black"}}>
+   <View style={{flex:1,backgroundColor:"#2e325a"}}>
     <View style={{height:"50%",justifyContent:'center',alignItems:'center'}}>
         <Image source={require('./assets/icons/logo.png')} style={{resizeMode:"contain",width:"80%"}}></Image>
     </View>
     <View style={{height:"40%",padding:20,justifyContent:'space-evenly'}}>
      <View>
-     <TextInput value={email} onChangeText={text=>{setemail(text)}} style={{width:"100%",backgroundColor:"rgba(52, 52, 52, 1)",borderRadius:10,padding:10}} placeholder='Email' placeholderTextColor={"white"}></TextInput>
+     <TextInput value={email} onChangeText={text=>{setemail(text)}} style={{width:"100%",backgroundColor:"#2e325a",borderRadius:10,padding:10,borderColor:"white",borderWidth:0.3}} placeholder='Email' placeholderTextColor={"white"}></TextInput>
      </View>
      <View>
-     <TextInput value={password} secureTextEntry onChangeText={text=>{setpassword(text)}} style={{width:"100%",backgroundColor:"rgba(52, 52, 52, 1)",borderRadius:10,padding:10}} placeholder='Password' placeholderTextColor={"white"}></TextInput>
+     <TextInput value={password} secureTextEntry onChangeText={text=>{setpassword(text)}} style={{width:"100%",backgroundColor:"#2e325a",borderRadius:10,padding:10,borderColor:"white",borderWidth:0.3}} placeholder='Password' placeholderTextColor={"white"}></TextInput>
      </View>
      <TouchableOpacity style={{justifyContent:"center",alignItems:"center"}} onPress={login}>
         <View style={{height:60,width:150,borderRadius:15,backgroundColor:'#2196F3',justifyContent:"center",alignItems:"center"}}>

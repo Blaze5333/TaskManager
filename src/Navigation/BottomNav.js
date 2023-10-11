@@ -39,7 +39,7 @@ export default function BottomNav() {
     tabBarStyle:{position:'absolute',marginHorizontal:20,bottom:10,borderRadius:20,backgroundColor:'white',
     height:75},
     tabBarShowLabel:false,
-    header:(()=>(<View style={{height:60,backgroundColor:"black",justifyContent:'center',paddingHorizontal:20}}>
+    header:(()=>(<View style={{height:60,backgroundColor:"#2e325a",justifyContent:'center',paddingHorizontal:20}}>
       <Text style={{color:"white",fontWeight:"bold",fontSize:25}}>Hi ! {details?(details.name.split(' ')[0]):""}</Text>
     </View>)),
     headerStyle:{backgroundColor:"black"}

@@ -6,23 +6,16 @@
  */
 
 import React from 'react';
-import { View,StyleSheet ,Text,Image,TouchableOpacity,SafeAreaView} from 'react-native';
-import Home from './src/Home';
-import Add from './src/Add';
-import Profile from './src/Profile';
-import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NativeModules } from 'react-native';
-import StackNavigation from './src/Navigation';
+import MainStackNavigation from './src/Navigation';
 import { Provider } from 'react-redux';
 import { Store } from './src/redux/store';
 function App({navigation}) {
-  // NativeModules.DevSettings.setIsDebuggingRemotely(false);
-  
-  const Tab = createBottomTabNavigator(); 
+  // NativeModules.DevSettings.setIsDebuggingRemotely(false); 
   return (
     <Provider store={Store}>
-    <StackNavigation/>
+    <MainStackNavigation/>
     </Provider>
   )
   

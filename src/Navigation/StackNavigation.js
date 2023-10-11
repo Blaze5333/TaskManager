@@ -7,6 +7,7 @@ import Login from '../Login'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { setUserId } from '../redux/actions'
 import { useDispatch,useSelector } from 'react-redux'
+import SplashScreen from '../SplashScreen'
 export default function StackNavigation() {
   const {userId}=useSelector(state=>state.userReducer)
   const dispatch=useDispatch()
@@ -29,7 +30,9 @@ export default function StackNavigation() {
    }, [])
   return (
     <NavigationContainer>
-   {user&&<Stack.Navigator initialRouteName='signup' screenOptions={{headerShown:false}}>
+   {user&&
+   <Stack.Navigator initialRouteName={'splash'} screenOptions={{headerShown:false}}>
+   <Stack.Screen name='splash' component={SplashScreen} initialParams={{r:user}}></Stack.Screen>
    <Stack.Screen name='main' component={BottomNav} ></Stack.Screen>
     <Stack.Screen name='signup' component={Signup}></Stack.Screen>
     <Stack.Screen name='login' component={Login}></Stack.Screen>

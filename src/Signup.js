@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import React, { useState } from 'react'
-import { Text, TouchableOpacity, View,Image,ImageBackground,Pressable,TextInput,Modal,Alert,StatusBar} from 'react-native'
+import { Text, TouchableOpacity, View,Image,ImageBackground,Pressable,TextInput,Modal,Alert,StatusBar,LogBox} from 'react-native'
 import {launchImageLibrary,launchCamera} from 'react-native-image-picker';
 import DatePicker from 'react-native-date-picker'
 import { PermissionsAndroid } from 'react-native';
@@ -11,7 +11,9 @@ export default function Signup({navigation}) {
   useFocusEffect(
     React.useCallback(() => {
         ; // 'light-content' is also available
-         StatusBar.setBackgroundColor('black'); 
+        LogBox.ignoreAllLogs()
+
+         StatusBar.setBackgroundColor('#2e325a'); 
         
     },[]),
   );
@@ -76,7 +78,7 @@ export default function Signup({navigation}) {
         catch(err){}
     }
   return (
-    <View style={{flex:1,backgroundColor:"black"}}>
+    <View style={{flex:1,backgroundColor:"#2e325a"}}>
     
         <View style={{width:"100%",height:"20%",justifyContent:"center",alignItems:"center"}}>
             <ImageBackground source={imageUrl?{uri:imageUrl}:require('./assets/icons/defaultAvatar.png')} style={{height:120,width:120,justifyContent:"flex-end",alignItems:'flex-end'}} imageStyle={{borderRadius:100}}>
@@ -89,10 +91,10 @@ export default function Signup({navigation}) {
         </View>
         <View  style={{height:"60%",width:'100%',padding:20,justifyContent:"space-evenly"}}>
         <View>
-        <TextInput value={name} onChangeText={text=>{setname(text)}} style={{width:"100%",backgroundColor:"rgba(52, 52, 52, 1)",borderRadius:10,padding:10}} placeholder='Full Name' placeholderTextColor={"white"}></TextInput>
+        <TextInput value={name} onChangeText={text=>{setname(text)}} style={{width:"100%",backgroundColor:"#2e325a",borderRadius:10,padding:10,borderColor:"white",borderWidth:0.3}} placeholder='Full Name' placeholderTextColor={"white"}></TextInput>
         </View>
         <View>
-        <TextInput value={email} onChangeText={text=>{setemail(text)}} style={{width:"100%",backgroundColor:"rgba(52, 52, 52, 1)",borderRadius:10,padding:10}} placeholder='Email' placeholderTextColor={"white"}></TextInput>
+        <TextInput value={email} onChangeText={text=>{setemail(text)}} style={{width:"100%",backgroundColor:"#2e325a",borderRadius:10,padding:10,borderColor:"white",borderWidth:0.3}} placeholder='Email' placeholderTextColor={"white"}></TextInput>
         </View>
         <Pressable onPress={()=>{ 
           setdateOpen(true)}}>
@@ -102,15 +104,15 @@ export default function Signup({navigation}) {
         value={dob} 
         placeholder={!dob?'Date Of Birth':(dob.getDate()+"/"+ (+dob.getMonth()+1<10?'0'+(+dob.getMonth()+1):dob.getMonth()+1)+"/"+dob.getFullYear())}  
         editable={false} 
-        style={{backgroundColor:"rgba(52, 52, 52, 1)",width:'100%',borderRadius:15,padding:10}} 
+        style={{backgroundColor:"#2e325a",borderRadius:10,padding:10,borderColor:"white",borderWidth:0.3,width:'100%'}} 
         placeholderTextColor={'white'}></TextInput>
         </View>
       </Pressable>
     <View>
-        <TextInput value={phone} keyboardType='phone-pad' onChangeText={text=>{setphone(text)}} style={{width:"100%",backgroundColor:"rgba(52, 52, 52, 1)",borderRadius:10,padding:10}} placeholder='Phone no.' placeholderTextColor={"white"}></TextInput>
+        <TextInput value={phone} keyboardType='phone-pad' onChangeText={text=>{setphone(text)}} style={{width:"100%",backgroundColor:"#2e325a",borderRadius:10,padding:10,borderColor:"white",borderWidth:0.3}} placeholder='Phone no.' placeholderTextColor={"white"}></TextInput>
         </View>
         <View>
-        <TextInput textContentType='password' secureTextEntry value={password} onChangeText={text=>{setpassword(text)}} style={{width:"100%",backgroundColor:"rgba(52, 52, 52, 1)",borderRadius:10,padding:10}} placeholder='Password' placeholderTextColor={"white"}></TextInput>
+        <TextInput textContentType='password' secureTextEntry value={password} onChangeText={text=>{setpassword(text)}} style={{width:"100%",backgroundColor:"#2e325a",borderRadius:10,padding:10,borderColor:"white",borderWidth:0.3}} placeholder='Password' placeholderTextColor={"white"}></TextInput>
         </View>
         </View>
         <View style={{height:'10%',width:"100%",justifyContent:"center",alignItems:"center"}}>

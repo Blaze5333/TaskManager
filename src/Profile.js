@@ -70,8 +70,8 @@ export default function Profile({route,navigation}) {
 
    
   return (
-   <View style={{flex:1,backgroundColor:'black'}}>
-   <View style={{height:"20%", width:"100%", justifyContent:'center',alignItems:'center',backgroundColor:"#db222a",top:0,flexDirection:'row'}}>
+   <View style={{flex:1,backgroundColor:'#2e325a'}}>
+   <View style={{height:"20%", width:"100%", justifyContent:'center',alignItems:'center',backgroundColor:"#db222a",top:0,flexDirection:'row',borderBottomEndRadius:30,borderBottomStartRadius:30}}>
    {route.params&&<View style={{width:'40%',justifyContent:"center",alignItems:'center',left:0}}>
     <Image style={{height:150,width:150,borderRadius:100}} source={{uri:route.params.imageUrl?route.params.imageUrl:""}}></Image>
    </View>}
@@ -91,7 +91,7 @@ export default function Profile({route,navigation}) {
      </View>
    </View>
    </View>
-   <View style={{height:'35%',padding:15,justifyContent:"space-evenly",width:"100%"}}>
+   <View style={{height:'35%',padding:15,justifyContent:"space-evenly",width:"100%",backgroundColor:'#2e325a'}}>
    <View style={{}}>
    <TextInput editable={false} value={route.params?.name} inlineImageLeft='person' style={{backgroundColor:"rgba(52, 52, 52, 0.8)",width:"100%",height:40,borderRadius:10,color:'white',fontSize:15,fontWeight:'bold'}}></TextInput>
    </View>
@@ -105,7 +105,7 @@ export default function Profile({route,navigation}) {
    <TextInput editable={false} value={route.params?.phone} inlineImageLeft='phone' style={{backgroundColor:"rgba(52, 52, 52, 0.8)",width:"100%",height:40,borderRadius:10,color:'white',fontSize:15,fontWeight:'bold'}}></TextInput>
    </View> 
    </View> 
-   <View style={{height:"45%",bottom:"2%",paddingLeft:5}}>
+   <View style={{height:"45%",bottom:"2%",paddingLeft:5,backgroundColor:"#2e325a"}}>
    <View style={{marginVertical: 1}}>
             <View
               style={{
